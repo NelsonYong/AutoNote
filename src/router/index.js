@@ -1,27 +1,56 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
+const Input = () => import('views/Input/InPut')
+const education = () => import('views/Input/childComps/Education')
+const work = () => import('views/Input/childComps/WorkInfo')
+const skill = () => import('views/Input/childComps/SkillInfo')
+const project = () => import('views/Input/childComps/ProjectInfo')
+const self = () => import('views/Input/childComps/SelfInfo')
+const ShowInfo = () => import('views/showinfo/ShowInfo')
+
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 Vue.use(VueRouter)
 
-  const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
+const routes = [{
+    path: '',
+    redirect: '/show'
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path: '/input',
+    component: Input,
+  },
+  {
+    path: '/education',
+    component: education
+  },
+  {
+    path: '/work',
+    component: work
+  },
+  {
+    path: '/skill',
+    component: skill
+  },
+  {
+    path: '/project',
+    component: project
+  },
+  {
+    path: '/self',
+    component: self
+  },
+  {
+    path: '/show',
+    component: ShowInfo
   }
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
   base: process.env.BASE_URL,
   routes
 })

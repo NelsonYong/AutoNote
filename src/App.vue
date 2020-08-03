@@ -1,32 +1,77 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div id="app" :class="value?'isDark':''">
+    <el-container>
+      <el-aside width="25vw">
+        <MainBar></MainBar>
+
+      </el-aside>
+      <el-main width="75vw" v-loading="loading">
+        <!-- <el-switch v-model="value" active-color="#13ce66" inactive-color="#ff4949" class="choose">
+        </el-switch> -->
+        <keep-alive>
+          <router-view :key="$route.fullPath" />
+        </keep-alive>
+      </el-main>
+    </el-container>
   </div>
 </template>
+<script>
+  import MainBar from 'components/common/MainBar'
+  export default {
+    components: {
+      MainBar
+    },
+    data() {
+      return {
+        loading: false,
+        value: false
+      }
+    },
+    mounted() {
+      this.$bus.$on('loading', () => {
+        this.loading = true
+        new Promise((reslove, reject) => {
+          setTimeout(() => {
+            this.loading = false
+          }, 2000)
+          reslove('success')
+        }).then((res) => {
+          console.log(res)
+          this.$notify({
+            showClose: true,
+            duration: 1000,
+            message: '保存成功',
+            type: 'success'
+          })
+        })
+      })
+    },
+  }
+</script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  @import 'assets/css/base.css';
+  
 
-#nav {
-  padding: 30px;
-}
+  .app {
+    width: 100%;
+    height: 100%;
+  }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  .el-icon-circle-plus:active {
+    transform: scale(1.3);
+  }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  .choose {
+    position: fixed;
+    top: 1vh;
+    left: 60vw;
+    z-index: 1000;
+
+  }
+
+  .isDark {
+    background-color: black;
+   
+  }
 </style>
