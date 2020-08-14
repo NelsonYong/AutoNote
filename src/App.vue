@@ -1,11 +1,11 @@
 <template>
   <div id="app" :class="value?'isDark':''">
+    <Login></Login>
     <el-container>
       <el-aside width="25vw">
         <MainBar></MainBar>
-
       </el-aside>
-      <el-main width="75vw" v-loading="loading">
+      <el-main width="75vw" v-loading="loading" id="pdfDom">
         <!-- <el-switch v-model="value" active-color="#13ce66" inactive-color="#ff4949" class="choose">
         </el-switch> -->
         <keep-alive>
@@ -17,10 +17,16 @@
 </template>
 <script>
   import MainBar from 'components/common/MainBar'
+  import Login from 'components/common/Login'
+  
+
+ 
   export default {
     components: {
-      MainBar
+      MainBar,
+      Login
     },
+
     data() {
       return {
         loading: false,
@@ -45,13 +51,22 @@
           })
         })
       })
+
+
+
+      this.$bus.$on('PdfPrint', () => {
+        console.log("导出pdf")
+        let element = document.getElementById('pdfDom')
+        this.getPdf('简历')
+
+      })
     },
   }
 </script>
 
 <style>
   @import 'assets/css/base.css';
-  
+
 
   .app {
     width: 100%;
@@ -72,6 +87,7 @@
 
   .isDark {
     background-color: black;
-   
+
   }
+
 </style>

@@ -3,7 +3,7 @@
     <!-- <el-button @click="changeDrawer" type="primary" style="margin-left: 16px;">
       点我打开
     </el-button> -->
-    <el-drawer title="简历书写提示栏" :visible.sync="drawer" :with-header="true" :modal="false" :direction="dir" class="header" size="25%">
+    <el-drawer title="简历书写提示栏" :visible.sync="drawer" :with-header="true" :modal="false" :direction="dir" class="header" size="15%">
       <div class="content">
         <el-collapse accordion>
           <el-collapse-item v-for="(item, index) in data" :key="index">

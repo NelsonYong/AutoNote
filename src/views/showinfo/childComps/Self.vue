@@ -34,5 +34,8 @@
 
       padding: 2vw;
 
+      height: 20vh;
+      
+
   }
 </style>

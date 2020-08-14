@@ -5,10 +5,14 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    UserNote: {}
+    UserNote: {},
+    Loginable: false
   },
   mutations: {
 
+    getUserId(state,id){
+      state.UserNote.id=id
+    },
     getBaseInfo(state, payload) {
       state.UserNote.baseInfo = payload
     },
@@ -26,9 +30,20 @@ export default new Vuex.Store({
     },
     getSelfInfo(state, payload) {
       state.UserNote.selfInfo = payload
+    },
+
+    ChangeLoginState(state, payload) {
+      if (payload == 1) {
+        state.Loginable = true
+      }
     }
   },
-  actions: {},
+  actions: {
+
+    ChangeLoginState() {
+
+    }
+  },
   modules: {},
   getters: {
 

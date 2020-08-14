@@ -24,7 +24,9 @@
     </div>
     <div class="item">
       <div class="title">平均绩点</div>
-      <div class="value"><el-progress type="circle" :percentage="percentage"></el-progress>
+      <div class="value">
+        <!-- <el-progress type="circle" :percentage="percentage"></el-progress> -->
+        <el-progress :text-inside="true" :stroke-width="26" :percentage="percentage" :status="status"></el-progress>
       </div>
     </div>
   </div>
@@ -36,17 +38,41 @@
       return {
         title: ['毕业/就读学校', '所在学院', '毕业/就读日期', '主修课程', '平均绩点'],
         eduInfo: {},
-        percentage:0
+        percentage: 0,
+        status: 'exception'
       }
 
     },
+    filters: {},
     mounted() {
       this.$bus.$on('edu', () => {
         this.eduInfo = this.$store.state.UserNote.eduInfo
-        this.percentage=parseFloat(this.eduInfo.scroe/4).toFixed(2)*100 
+        this.percentage = parseFloat((this.eduInfo.scroe / 4) * 100).toFixed(2)
+        this.format()
         console.log(this.eduInfo)
       })
 
+    },
+
+    methods: {
+      format() {
+
+        if (this.percentage <= 60) {
+          this.status = "exception"
+        }
+        if (this.percentage > 60 && this.percentage <= 80) {
+          this.status = "warning"
+        }
+        if (this.percentage > 70 && this.percentage <= 90) {
+          this.status = ""
+        }
+        if (this.percentage > 90) {
+          this.status = "success"
+        }
+
+
+
+      }
     }
 
   }

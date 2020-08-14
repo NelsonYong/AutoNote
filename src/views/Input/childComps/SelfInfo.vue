@@ -15,6 +15,11 @@
             </el-row>
           </div>
 
+          <div class="submit">
+            <div class="sub-btn">
+              <el-button type="primary" round class="btnItem sub-btn-item" @click="subAll">全部提交到服务器</el-button>
+            </div>
+          </div>
 
           <div class="lizi">
             <p>示例</p>
@@ -32,6 +37,11 @@
 
 <script>
   import Btn from 'components/common/Btn'
+   import {
+    PushData
+    // getGoodsData
+  } from 'network/data.js'
+
   export default {
     components: {
       Btn
@@ -61,6 +71,14 @@
 
       reset() {
         this.selftext = ''
+      },
+
+      subAll(){
+
+        PushData(this.$store.state.UserNote).then(res=>{
+          console.log(res)
+        })
+
       }
 
     }
@@ -102,5 +120,24 @@
       -11px -11px 22px #ffffff;
 
     padding: 2vw;
+  }
+
+  .submit {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+
+  }
+
+  .sub-btn {
+    margin-top: 6vh;
+
+    width: 50%;
+
+  }
+
+  .sub-btn-item {
+    width: 100%;
+    font-size: 1.3vw;
   }
 </style>

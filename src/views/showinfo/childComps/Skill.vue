@@ -1,10 +1,12 @@
 <template>
-  <div class="skill" v-if="SkillInfo.length!=0">
-    <div class="skillItem" v-for="(item, index) in SkillInfo" :key="index">
-      <div class="title">{{item.skill}}</div>
-      <div class="val">
-        <el-rate v-model="item.val" show-text :texts="['了解','基础','熟悉','掌握','熟练']" disabled="true">
-        </el-rate>
+  <div class="skill">
+    <div class="content" v-if="SkillInfo.length!=0">
+      <div class="skillItem" v-for="(item, index) in SkillInfo" :key="index">
+        <div class="title">{{item.skill}}</div>
+        <div class="val">
+          <el-rate v-model="item.val" show-text :texts="['了解','基础','熟悉','掌握','熟练']" disabled="true">
+          </el-rate>
+        </div>
       </div>
     </div>
   </div>
@@ -44,6 +46,10 @@
     flex-direction: column;
   }
 
+  .content{
+    width: 100%;
+  }
+
   .skillItem {
     display: flex;
     height: 5vh;
@@ -56,10 +62,10 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  
+
     font-weight: 800;
     padding-right: 0.5vw;
- 
- 
+
+
   }
 </style>

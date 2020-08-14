@@ -42,6 +42,7 @@
               <div class="block">
                 <el-slider v-model="scroe" show-input :max=4 :step=0.01>
                 </el-slider>
+              
               </div>
             </div>
 

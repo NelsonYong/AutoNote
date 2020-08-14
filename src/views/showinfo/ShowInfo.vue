@@ -6,17 +6,47 @@
       <transition name="el-zoom-in-center">
         <el-main class="main transition-box" v-show="show">
           <div class="content">
-            <div class="title">基本信息</div>
+            <div class="title">
+              <el-divider content-position="left">
+                <div class="img"><img src="~assets/img/userinfo.png" alt=""></div>
+                <div class="text">基本信息</div>
+              </el-divider>
+            </div>
             <Bases></Bases>
-            <div class="title">教育背景</div>
+            <div class="title">
+              <el-divider content-position="left">
+                <div class="img"><img src="~assets/img/edu.png" alt=""></div>
+                <div class="text">教育背景</div>
+              </el-divider>
+            </div>
             <Edu></Edu>
-            <div class="title">工作经历</div>
-            <Work></Work>
-            <div class="title">具备技能</div>
+            <div class="title">
+              <el-divider content-position="left">
+                <div class="img"><img src="~assets/img/skill.png" alt=""></div>
+                <div class="text">具备技能</div>
+              </el-divider>
+            </div>
             <Skill></Skill>
-            <div class="title">项目经历</div>
+            <div class="title">
+              <el-divider content-position="left">
+                <div class="img"><img src="~assets/img/work.png" alt=""></div>
+                <div class="text">工作经历</div>
+              </el-divider>
+            </div>
+            <Work></Work>
+            <div class="title">
+              <el-divider content-position="left">
+                <div class="img"><img src="~assets/img/project.png" alt=""></div>
+                <div class="text">项目经历</div>
+              </el-divider>
+            </div>
             <Project></Project>
-            <div class="title">自我评价</div>
+            <div class="title">
+              <el-divider content-position="left">
+                <div class="img"><img src="~assets/img/self.png" alt=""></div>
+                <div class="text">自我评价</div>
+              </el-divider>
+            </div>
             <Self></Self>
           </div>
         </el-main>
@@ -70,6 +100,12 @@
     // },
     activated() {
       this.show = true
+      // this.$bus.$emit('base')
+      // this.$bus.$emit('edu')
+      // this.$bus.$emit('project')
+      // this.$bus.$emit('self')
+      // this.$bus.$emit('skill')
+      // this.$bus.$emit('work')
     },
     deactivated() {
       this.show = false
@@ -100,6 +136,31 @@
 
     background-color: black;
 
+  }
 
+  .title {
+    font-size: 1vw;
+    margin-top: 0.2vw;
+  }
+
+  .img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .img img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .el-divider__text {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 800;
+  }
+
+  .text {
+    padding-left: 0.6vw;
   }
 </style>

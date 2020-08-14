@@ -34,7 +34,8 @@
           <el-menu-item index="1-4-1">字体大小</el-menu-item>
         </el-submenu>
       </el-submenu>
-      <el-menu-item index="2">
+       <!-- @click="PdfPrint" -->
+      <el-menu-item @click="PdfPrint">
         <i class="el-icon-menu"></i>
         <span slot="title">导出pdf</span>
       </el-menu-item>
@@ -74,6 +75,10 @@
       task() {
 
         this.$refs.task.changeDrawer()
+      },
+
+      PdfPrint() {
+        this.$bus.$emit('PdfPrint')
       }
 
     }
@@ -93,14 +98,16 @@
     bottom: 0;
 
   }
-  .show{
+
+  .show {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
-  .showitem{
-   vertical-align: middle;
-   position: relative;
-   bottom: 3px;
+
+  .showitem {
+    vertical-align: middle;
+    position: relative;
+    bottom: 3px;
   }
 </style>

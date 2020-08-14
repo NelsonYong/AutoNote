@@ -1,12 +1,12 @@
-import {
-  request
-} from './request'
+// import {
+//   request
+// } from './request'
 
-export function getHomeMultiData() {
-  return request({
-    url: '/8_3_3.php'
-  });
-}
+// export function getHomeMultiData() {
+//   return request({
+//     url: '/8_3_3.php'
+//   });
+// }
 
 // export function getGoodsData(type, page) {
 //   return request({
