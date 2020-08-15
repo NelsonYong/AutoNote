@@ -35,7 +35,6 @@ Axios.defaults.headers['Content-Type'] = 'application/x-www-form-urlencoded'
 const instance = new Axios.create({
 
   baseURL: 'http://127.0.0.1/myphp/Data',
-  // baseURL:'http://49.234.86.61:8000/Autonote/Data',
   timeout: 5000
 });
 
